@@ -26,3 +26,12 @@
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/your-username/InsightForge.git
+## Create a Virtual Environment (Recommended)
+
+2. **Create the virtual environment:**
+```bash
+python -m venv venv 
+
+
+
+
