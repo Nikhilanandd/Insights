@@ -1,7 +1,7 @@
 flask
 pandas
-numpy
 matplotlib
-seaborn
-streamlit
+openpyxl
 requests
+streamlit
+Pillow
