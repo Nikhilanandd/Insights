@@ -1,29 +1,31 @@
 import streamlit as st
 from matplotlib.backends.backend_pdf import PdfPages
 from io import BytesIO
-from PIL import Image
 import matplotlib.pyplot as plt
 
-st.title("🧾 Generate Report")
+st.title("\ud83e\uddfe Generate Report")
 
-if 'report_images' in st.session_state and st.session_state['report_images']:
+# Ensure we have figures stored
+if 'report_figures' in st.session_state and st.session_state['report_figures']:
     pdf_buffer = BytesIO()
 
     with PdfPages(pdf_buffer) as pdf:
-        for img_data in st.session_state['report_images']:
-            image = Image.open(BytesIO(img_data)).convert("RGB")
-            fig, ax = plt.subplots(figsize=(10, 6))
+        for fig in st.session_state['report_figures']:
+            # Save each Plotly figure to a temporary PNG using kaleido alternative
+            img_bytes = fig.to_image(format="png")
+            image = plt.imread(BytesIO(img_bytes), format='png')
+            fig_, ax = plt.subplots(figsize=(10, 6))
             ax.imshow(image)
             ax.axis('off')
-            pdf.savefig(fig)
-            plt.close(fig)
+            pdf.savefig(fig_)
+            plt.close(fig_)
 
-    st.success("✅ PDF Report Generated!")
+    st.success("\u2705 PDF Report Generated!")
     st.download_button(
-        label="📥 Download PDF Report",
+        label="\ud83d\udcc5 Download PDF Report",
         data=pdf_buffer.getvalue(),
         file_name="Data_Insights_Report.pdf",
         mime="application/pdf"
     )
 else:
-    st.warning("No visualizations available. Go to the Dashboard page and upload data.")
+    st.warning("No visualizations available. Please visit the Dashboard page and upload data.")
