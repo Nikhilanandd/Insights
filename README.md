@@ -3,6 +3,9 @@
 **Insights** is a Python-based web application that allows users to upload datasets (CSV/Excel) and automatically generates valuable insights and interactive visualizations. Built with **Flask** (for backend API) and **Streamlit** (for frontend UI), it leverages powerful open-source libraries like **Pandas**, **Plotly**, and **Seaborn** for seamless data processing and storytelling.
 
 ---
+🔗 **[Live App on Streamlit](https://<your-app-URL>.streamlit.app)**  
+
+---
 
 ## 🚀 Features
 
