@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 import os
-from .data_processing.analyze import analyze_data, generate_visualizations
-
+from data_processing.analyze import analyze_data
 
 app = Flask(__name__)
 
@@ -20,11 +19,10 @@ def upload_file():
     filepath = os.path.join(UPLOAD_FOLDER, file.filename)
     file.save(filepath)
 
-    # Analyze and generate visualization
+    # Analyze only — visualization now in Streamlit
     insights = analyze_data(filepath)
-    chart_path = generate_visualizations(filepath)
 
-    return jsonify({'insights': insights, 'chart_path': chart_path})
+    return jsonify({'insights': insights, 'filename': file.filename})
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
