@@ -16,7 +16,10 @@ if uploaded_file:
     st.success(f"✅ Uploaded: {uploaded_file.name}")
 
     df = load_dataframe(file_path)
-    st.session_state['report_images'] = []  # clear images before new upload
+   st.plotly_chart(fig_bar, use_container_width=True)
+# Optionally store figure object, not image
+st.session_state['report_figures'].append(fig_bar)
+
 
     st.subheader("🖊️ Visualizations")
 
